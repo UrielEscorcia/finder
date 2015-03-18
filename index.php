@@ -24,9 +24,6 @@
 		$query = "SELECT * FROM usuarios WHERE id_Usuarios = '$id_user'";
 		$result = mysql_query($query,$dbConect);
 		$arrayUser = mysql_fetch_array($result);
-	}else{
-		header('Location: index.html');
-		die();
 	}
 
 ?>
@@ -35,7 +32,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Finder</title>
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false"></script>
 	<script src="js/jquery-1.11.2.min.js"></script>
 	<script src="js/init.js"></script>
 	<script src="js/mapa.js"></script>
@@ -43,21 +40,41 @@
 </head>
  
 <body>
- 	
-<?php
+	<div id="map-canvas">
+	</div>
+		
+		<nav class ="navbar">
+		<div class="menu">
+			<a class="sitename" href="">Finder</a>
+			<ul class="menu-items">
+				
+				<li class="busqueda">
+					<input type ="text" name = "search" id="search" placeholder = "Buscar"/>
+					<a href="#"><img src="img/lupa2.png"></a>
+				</li>
+				<li class="controles">
+					<a href="#"><img src="img/btn1.png"></a>
+				</li>
 
-	echo "<h2>Hola ".$arrayUser['nombre']."</h2>";
+			</ul>
+		</div>
+			
+				
+		</nav>	
 
-	if ($arrayUser['tipo'] == "dueño") {
-		 echo '<a href="establecimiento.php">Registrar establecimiento</a>';
-	}
-	
+		<?php
 
-?>
-	<a href="home.php?salir=true">Salir</a>
-	<div id="map-canvas"></div>
-	
-	
+					if ($arrayUser['tipo'] == "dueño") {
+						echo "<h2>Hola ".$arrayUser['nombre']."</h2>";
+						echo '<a href="establecimiento.php">Registrar establecimiento</a> | ';
+						echo '<a href="index.php?salir=true">Salir</a>';
+					}else{
+						echo '<a href="login.html">Login</a> | <a href="registro.php">Sign in</a>';
+					}
+					
+
+				?>
+		
 	
 </body>
 </html>

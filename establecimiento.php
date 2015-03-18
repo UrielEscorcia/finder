@@ -20,12 +20,9 @@
 		$result = mysql_query($query,$dbConect);
 		$arrayUser = mysql_fetch_array($result);
 		if ($arrayUser['tipo'] != "dueño") {
-			header('Location: home.html');
+			header('Location: index.php');
 			die();
 		}
-	}else{
-		header('Location: index.html');
-		die();
 	}
 	//cargar de categorias
 	$arrayCategoria = array();
@@ -40,10 +37,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Finder</title>
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false"></script>
 	<script src="js/jquery-1.11.2.min.js"></script>
-	<script src="js/mapa.js"></script>
 	<script src="js/init.js"></script>
+	<script src="js/mapaEstablecimineto.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	
 </head>
@@ -54,7 +51,7 @@
 	echo "<h2>Hola ".$arrayUser['nombre']."</h2>";
 	
 ?>
-	<a href="home.php?salir=true">Salir</a>
+	<a href="index.php?salir=true">Salir</a>
 	<!-- registro establecimiento -->
 	<div id="regEstable" >
  	
@@ -77,13 +74,15 @@
 						}
 					 ?>
 			</select> <br><br>
-			<input type ="text" name = "lat" placeholder = "Latitud" required="true"/>
-			<input type ="text" name = "lng" placeholder = "Longitud" required="true"/>
+			<input type ="text" name = "lat" placeholder = "Latitud" required="true" disabled/>
+			<input type ="text" name = "lng" placeholder = "Longitud" required="true" disabled/>
 			<br><br>
-			<label from = "ubication">Estoy en mi negocio</label>
-			<input type ="radio" name = "ubication" value= "true" />
-			<label from = "ubication1">Elegir ubicacion manual</label>
-			<input type ="radio" name = "ubication" value="false" />
+			<div id="ubicacion">
+				<label from = "ubication">Estoy en mi negocio</label>
+				<input type ="radio" name = "ubication" value= "true" />
+				<label from = "ubication1">Elegir ubicacion manual</label>
+				<input type ="radio" name = "ubication" value="false" />
+			</div>
 			
 		</form>
 		<input type ="submit" id="registrar_negocio_btn" value = "Registrar"/><br><br>

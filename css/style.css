@@ -1,11 +1,91 @@
 html, body {
 	height: 100%;
 	margin: 0;
-	padding: 1em;
+	
 }
 
 #map-canvas {
-    height: 80%;  
-    margin: 1em;
-    padding: 1em;
+	position: fixed;
+	left: 0;
+	top: 0;
+    height: 100%;  
+    
+}
+
+
+ .navbar{
+ 	
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 9999;
+	height: 90px;
+	width: 100%;
+	font-family: "Arial";
+	box-shadow: inset 0px 85px 52px -29px rgba(0,0,0,0.5);
+
+ }
+
+ .menu {
+  width: 90%;
+  max-width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.menu a, .menu a:visited {
+  color: #ffffff;
+}
+
+.menu-items {
+  display: inline-block;
+  width: 75%;
+}
+
+.sitename {
+  display: inline-block;
+  margin-top: 17px;
+  margin-bottom: 17px;
+  margin-right: 20px;
+  margin-left: 10px;
+  text-decoration: none;
+  font-size: 2em;
+}
+
+.menu-items li {
+  display: inline-block;
+  width: 45%;
+}
+
+.menu-items a {
+  text-decoration: none;
+}
+
+.busqueda{
+	text-align: center;
+}
+
+.menu-items img {
+  width: 40px;
+  vertical-align: middle;
+
+}
+
+.busqueda #search{
+	border-radius: 2em;
+	height: 30px;
+	width: 70%;
+	background-color: white;
+	font-size: 16px;
+	text-align: left;
+	margin-right: 15px;
+
+}
+
+.controles{
+	text-align: right;
+}
+
+.gmnoprint .login{
+	display: none;
 }

@@ -7,7 +7,9 @@ $(function(){
 
     function initialize() {
         mapOptions = {
-          zoom: 15 
+          zoom: 15,
+          scrollwheel: false,
+          disableDefaultUI: true, 
         };
 
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);

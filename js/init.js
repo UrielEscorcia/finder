@@ -22,7 +22,7 @@ $(function(){
 					$("#form_login #password").val('');			
 				}else{
 
-					$(window).attr('location', 'home.php');
+					$(window).attr('location', 'index.php');
 
 				}
 			}, "json");
@@ -83,7 +83,7 @@ $(function(){
 						$("#registro #error").show('slow');			
 					}else{
 
-						$(window).attr('location', 'home.php');
+						$(window).attr('location', 'index.php');
 
 					}
 				}, "json");
@@ -118,6 +118,9 @@ $(function(){
 		var proceed = true;
 		$("#form_establecimiento input[required=true], #form_establecimiento select[required=true]").each(function(){
 			if(!$.trim($(this).val())){ //if this field is empty 
+				if ($(this).attr("name") == "lat") {
+					$("#form_establecimiento #ubicacion").css({'border-color':'red','border-style':'solid'});
+				}
 			    $(this).css('border-color','red'); //change border color to red   
 			    proceed = false; //set do not proceed flag
 			}
@@ -147,12 +150,13 @@ $(function(){
 		    	$.post("php/registroNegocio.php", $("#form_establecimiento").serialize(),  function(response) {
 							
 				
-					if(response.type == "error"){ //load json data from server and output message     
+					if(response.type == "error"){ //load json data from server and output message 
+						$("#regEstable #error").empty();    
 						$("#regEstable #error").append(response.text);
 						$("#regEstable #error").show('slow');			
 					}else{
 
-						$(window).attr('location', 'home.php');
+						$(window).attr('location', 'index.php');
 
 					}
 				}, "json");

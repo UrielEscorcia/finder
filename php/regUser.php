@@ -41,7 +41,7 @@ if ($_POST) {
 				$result = mysql_query($query,$dbConect);
 				$row = mysql_fetch_array($result);
 				$_SESSION['user'] = $nombre;
-				$_SESSION['id_Usr'] = $row['id_Usuarios'];
+				$_SESSION['id_Usr']= $row['id_Usuarios'];
 				echo json_encode(array("type"=>"succes", "text" => "Redireccionando."));	
 			}
 			
