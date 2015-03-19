@@ -26,6 +26,14 @@
 		$arrayUser = mysql_fetch_array($result);
 	}
 
+	//cargar de categorias
+	$arrayCategoria = array();
+	$query = "SELECT * FROM categorias";
+	$result = mysql_query($query, $dbConect);
+	while ($row = mysql_fetch_assoc($result)) {
+		array_push($arrayCategoria, $row);
+	}
+
 ?>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -53,7 +61,37 @@
 					<a href="#"><img src="img/lupa2.png"></a>
 				</li>
 				<li class="controles">
-					<a href="#"><img src="img/btn1.png"></a>
+					<ul>
+					<li id="action1">
+						<a href="#" id="categorias"><img src="img/btn1.png"></a>
+						<ul id="categories">
+							<?php 
+								foreach ($arrayCategoria as $categoria) {
+									echo '<li><a name ="'.$categoria['id_Categorias'].'">'.$categoria['nombreCategoria'].'</a></li>' ;
+								}
+							 ?>
+						</ul>
+					</li>
+					<li id="action2">
+						<a href="#" id="acionesUsr"><img src="img/usr.png"></a>
+						<ul id="actions">
+							<?php
+								if (!empty($arrayUser)) {
+									if ($arrayUser['tipo'] == "dueño") {
+										echo '<li><a href="establecimiento.php">Establecimientos</a></li>';
+									}
+									echo '<li><a href="index.php?salir=true">Salir</a></li>';
+								}else{
+									echo '<li><a href="login.html">Login</a></li>';
+									echo '<li><a href="registro.php">Sign in</a></li>';;
+								}
+								
+
+							?>
+			
+						</ul>
+					</li>
+					</ul>
 				</li>
 
 			</ul>
@@ -62,19 +100,7 @@
 				
 		</nav>	
 
-		<?php
-
-					if ($arrayUser['tipo'] == "dueño") {
-						echo "<h2>Hola ".$arrayUser['nombre']."</h2>";
-						echo '<a href="establecimiento.php">Registrar establecimiento</a> | ';
-						echo '<a href="index.php?salir=true">Salir</a>';
-					}else{
-						echo '<a href="login.html">Login</a> | <a href="registro.php">Sign in</a>';
-					}
-					
-
-				?>
-		
+				
 	
 </body>
 </html>

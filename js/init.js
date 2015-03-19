@@ -186,6 +186,37 @@ $(function(){
 		$(this).css('border-color','');
 	});
 
+	//menu dropdown en index
+
+	//Hide SubLevel Menus
+	 $('.controles ul li ul').hide();
+	 
+	 //OnHover Show SubLevel Menus
+	 $('.controles ul li #categorias').hover(
+	  //OnHover
+	  function(){
+		   //Hide Other Menus
+		   //$('.controles ul li').not($('ul', this)).stop();
+		 
+		   //Add the Arrow
+		   $('ul li:first-child', '#action1').before('<li class="arrow">arrow</li>' );
+		 
+		   //Remove the Border
+		   $('ul li.arrow', '#action1').css('border-bottom', '0');
+		 
+		   // Show Hoved Menu
+		   $('ul', '#action1').slideDown();
+	  },
+	  //OnOut
+	  function(){
+		   // Hide Other Menus
+		   $('ul', '#action1').slideUp();
+		 
+		   //Remove the Arrow
+		   $('ul li.arrow', '#action1').remove();
+	  });
+
+
 
 });
 
