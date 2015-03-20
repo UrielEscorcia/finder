@@ -21,8 +21,8 @@ $(function(){
 					});
 					$("#form_login #password").val('');			
 				}else{
-
-					$(window).attr('location', 'index.php');
+					window.parent.jQuery.fancybox.close();
+					$(window.parent).attr('location', 'index.php');
 
 				}
 			}, "json");
@@ -83,7 +83,8 @@ $(function(){
 						$("#registro #error").show('slow');			
 					}else{
 
-						$(window).attr('location', 'index.php');
+						window.parent.jQuery.fancybox.close();
+						$(window.parent).attr('location', 'index.php');
 
 					}
 				}, "json");
@@ -234,6 +235,12 @@ $(function(){
 	$(document).mousedown( function(){
     	$('ul', '#action2').slideUp();
     	$('ul', '#action1').slideUp();
+    });
+
+    //fancybox
+    $(".various").fancybox({
+    	openEffect	: 'fade',
+		closeEffect	: 'fade	'
     });
 
 });

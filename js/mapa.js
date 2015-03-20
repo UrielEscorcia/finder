@@ -1,15 +1,65 @@
 $(function(){
+
 	var map;
     
     var mapOptions;
     var lat = 19.005160;
     var lng = -98.204403;
+    var geocoder;
 
     function initialize() {
+      geocoder = new google.maps.Geocoder();
         mapOptions = {
           zoom: 15,
           scrollwheel: false,
-          disableDefaultUI: true, 
+          disableDefaultUI: true,
+           styles: [{
+                  featureType: 'water',
+                  stylers: [{
+                      color: '#46bcec'
+                  }, {
+                      visibility: 'on'
+                  }]
+              }, {
+                  featureType: 'landscape',
+                  stylers: [{
+                      color: '#f2f2f2'
+                  }]
+              }, {
+                  featureType: 'road',
+                  stylers: [{
+                      saturation: -100
+                  }, {
+                      lightness: 45
+                  }]
+              }, {
+                  featureType: 'road.highway',
+                  stylers: [{
+                      visibility: 'simplified'
+                  }]
+              }, {
+                  featureType: 'road.arterial',
+                  elementType: 'labels.icon',
+                  stylers: [{
+                      visibility: 'off'
+                  }]
+              }, {
+                  featureType: 'administrative',
+                  elementType: 'labels.text.fill',
+                  stylers: [{
+                      color: '#444444'
+                  }]
+              }, {
+                  featureType: 'transit',
+                  stylers: [{
+                      visibility: 'off'
+                  }]
+              }, {
+                  featureType: 'poi',
+                  stylers: [{
+                      visibility: 'off'
+                  }]
+              }] 
         };
 
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -52,6 +102,8 @@ $(function(){
 
       google.maps.event.addDomListener(window, 'load', initialize);
 
+
+      //posicionar marcadores segun categoria
       var markers = [];
 
       $(".controles #action1 #categories a").click(function(e){
@@ -101,5 +153,40 @@ $(function(){
       });
 
 
+//////////////////Campo de busqueda ////////////////
+
+  $(".busqueda #buscarPlace").click(function(){
+
+    if ($(".busqueda #search").val() != '') {
+      var address = $(".busqueda #search").val();
+      geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map.setCenter(results[0].geometry.location);
+          map.setZoom(15);
+          
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+      $(".busqueda #search").val('');
+    }
+
+  });
+
+  $(".busqueda #geolocalizar").click(function(){
+    if(navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var center = new google.maps.LatLng(position.coords.latitude,
+                                             position.coords.longitude);
+
+            map.setCenter(center);
+          }, function() {
+            handleNoGeolocation(true);
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleNoGeolocation(false);
+        }
+     });
 
 });
