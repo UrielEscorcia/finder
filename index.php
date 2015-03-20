@@ -65,9 +65,10 @@
 					<li id="action1">
 						<a href="#" id="categorias"><img src="img/btn1.png"></a>
 						<ul id="categories">
+							<li class="arrow">arrow</li>
 							<?php 
 								foreach ($arrayCategoria as $categoria) {
-									echo '<li><a name ="'.$categoria['id_Categorias'].'">'.$categoria['nombreCategoria'].'</a></li>' ;
+									echo '<li><a href="#" name ="'.$categoria['id_Categorias'].'">'.$categoria['nombreCategoria'].'</a></li>' ;
 								}
 							 ?>
 						</ul>
@@ -75,6 +76,7 @@
 					<li id="action2">
 						<a href="#" id="acionesUsr"><img src="img/usr.png"></a>
 						<ul id="actions">
+							<li class="arrow">arrow</li>
 							<?php
 								if (!empty($arrayUser)) {
 									if ($arrayUser['tipo'] == "dueño") {

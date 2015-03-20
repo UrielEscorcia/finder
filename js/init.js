@@ -191,32 +191,50 @@ $(function(){
 	//Hide SubLevel Menus
 	 $('.controles ul li ul').hide();
 	 
-	 //OnHover Show SubLevel Menus
-	 $('.controles ul li #categorias').hover(
-	  //OnHover
-	  function(){
-		   //Hide Other Menus
-		   //$('.controles ul li').not($('ul', this)).stop();
+	 //onClick Show SubLevel Menus
+	 $('.controles ul li #categorias').click(
+	  
+	  function(event){
+	  		
+	  	event.stopPropagation();	
+	  	//Remove the Border
+		$('ul li.arrow', '#action1').css('border-bottom', '0');
+		
+		if ($('ul', '#action1').css('display') == 'none')
+			$('ul', '#action1').slideDown();
+		else
+			$('ul', '#action1').slideUp();
+	  
+		//Hide Other Menus
+		$('.controles ul li ul').not($('ul', '#action1')).slideUp();
 		 
-		   //Add the Arrow
-		   $('ul li:first-child', '#action1').before('<li class="arrow">arrow</li>' );
 		 
-		   //Remove the Border
-		   $('ul li.arrow', '#action1').css('border-bottom', '0');
-		 
-		   // Show Hoved Menu
-		   $('ul', '#action1').slideDown();
-	  },
-	  //OnOut
-	  function(){
-		   // Hide Other Menus
-		   $('ul', '#action1').slideUp();
-		 
-		   //Remove the Arrow
-		   $('ul li.arrow', '#action1').remove();
+		   
 	  });
 
+	 $('.controles ul li #acionesUsr').click(
+	  
+	  function(event){
+	  	event.stopPropagation();
+	  	//Remove the Border
+		$('ul li.arrow', '#action2').css('border-bottom', '0');
+			 
+		if ($('ul', '#action2').css('display') == 'none')
+			$('ul', '#action2').slideDown();
+		else
+			$('ul', '#action2').slideUp();
+	  		
+		//Hide Other Menus
+		$('.controles ul li ul').not($('ul', '#action2')).slideUp();
+		 
+		   
+	  });
 
+	 //hide menus
+	$(document).mousedown( function(){
+    	$('ul', '#action2').slideUp();
+    	$('ul', '#action1').slideUp();
+    });
 
 });
 

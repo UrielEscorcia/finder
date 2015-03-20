@@ -23,7 +23,10 @@
 			header('Location: index.php');
 			die();
 		}
+	}else{
+		header('Location: login.html');
 	}
+
 	//cargar de categorias
 	$arrayCategoria = array();
 	$query = "SELECT * FROM categorias";
@@ -49,6 +52,7 @@
  	
 <?php
 	echo "<h2>Hola ".$arrayUser['nombre']."</h2>";
+	echo $_SESSION['user'];
 	
 ?>
 	<a href="index.php?salir=true">Salir</a>
@@ -74,8 +78,8 @@
 						}
 					 ?>
 			</select> <br><br>
-			<input type ="text" name = "lat" placeholder = "Latitud" required="true" disabled/>
-			<input type ="text" name = "lng" placeholder = "Longitud" required="true" disabled/>
+			<input type ="text" name = "lat" placeholder = "Latitud" required="true" />
+			<input type ="text" name = "lng" placeholder = "Longitud" required="true" />
 			<br><br>
 			<div id="ubicacion">
 				<label from = "ubication">Estoy en mi negocio</label>
