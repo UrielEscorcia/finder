@@ -60,7 +60,7 @@
 		
 		<nav class ="navbar">
 		<div class="menu">
-			<a class="sitename" href="">Finder</a>
+			<a class="sitename" href="index.php">Finder</a>
 			<ul class="menu-items">
 				
 				<li class="busqueda">
