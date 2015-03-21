@@ -1,4 +1,5 @@
 $(function(){
+	
 	//fomulario de login
 	$("#login_btn").click(function(){
 		var proceed = true;

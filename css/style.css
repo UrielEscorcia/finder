@@ -145,7 +145,7 @@ html, body {
 }
 
 #loading{
-	display: none;
+	
 	position: absolute;
 	background: url(../img/loading.gif) no-repeat;
     top: 50%;

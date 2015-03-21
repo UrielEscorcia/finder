@@ -1,5 +1,5 @@
 $(function(){
-$("#loading").show();
+
 	var map;
     
     var mapOptions;
@@ -159,14 +159,16 @@ $("#loading").show();
   $(".busqueda #buscarPlace").click(function(){
 
     if ($(".busqueda #search").val() != '') {
+      $("#loading").show();
       var address = $(".busqueda #search").val();
       geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           map.setCenter(results[0].geometry.location);
           map.setZoom(15);
-          
+          $("#loading").hide();
         } else {
           alert('Geocode was not successful for the following reason: ' + status);
+          $("#loading").hide();
         }
       });
       $(".busqueda #search").val('');
