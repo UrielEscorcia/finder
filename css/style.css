@@ -73,6 +73,10 @@ html, body {
 
 }
 
+.menu-items img:hover{ 
+	opacity: 0.5;
+}
+
 .busqueda #search{
 	border-radius: 2em;
 	height: 30px;
@@ -92,6 +96,7 @@ html, body {
 	margin-right: 3em;
 	margin-left: 0.5em;
 }
+ 
 
 .controles ul li ul{ 
 	
