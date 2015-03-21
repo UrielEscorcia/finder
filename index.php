@@ -108,7 +108,11 @@
 		</div>
 			
 				
-		</nav>	
+		</nav>
+
+		<div id="loading">
+			
+		</div>	
 
 				
 	

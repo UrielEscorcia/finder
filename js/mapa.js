@@ -1,5 +1,5 @@
 $(function(){
-
+$("#loading").show();
 	var map;
     
     var mapOptions;
@@ -71,6 +71,7 @@ $(function(){
                                              position.coords.longitude);
 
             map.setCenter(posInicio);
+            $("#loading").hide();
           }, function() {
             handleNoGeolocation(true);
           });
@@ -174,12 +175,16 @@ $(function(){
   });
 
   $(".busqueda #geolocalizar").click(function(){
+    
+    $("#loading").show();
     if(navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             var center = new google.maps.LatLng(position.coords.latitude,
                                              position.coords.longitude);
 
             map.setCenter(center);
+            $("#loading").hide();
+          
           }, function() {
             handleNoGeolocation(true);
           });
