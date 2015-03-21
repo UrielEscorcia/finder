@@ -42,6 +42,12 @@
 	<title>Finder</title>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+	<!-- Add fancyBox -->
+	<link rel="stylesheet" href="js/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+	<script type="text/javascript" src="js/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 	<script src="js/init.js"></script>
 	<script src="js/mapaEstablecimineto.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
