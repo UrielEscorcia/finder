@@ -76,6 +76,7 @@ $(function(){
             myMarker = new google.maps.Marker({
               position: posInicio,
               map: map,
+              icon: "img/icon_yourself.png"
             });
 
             $("#loading").hide();
