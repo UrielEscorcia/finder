@@ -115,78 +115,7 @@ $(function(){
 		$(this).css('border-color','');
 	});
 
-	//formulario de registro negocio
-	$("#registrar_negocio_btn").click(function(){
-		var proceed = true;
-		$("#form_establecimiento input[required=true], #form_establecimiento select[required=true]").each(function(){
-			if(!$.trim($(this).val())){ //if this field is empty 
-				if ($(this).attr("name") == "lat") {
-					$("#form_establecimiento #ubicacion").css({'border-color':'red','border-style':'solid'});
-				}
-			    $(this).css('border-color','red'); //change border color to red   
-			    proceed = false; //set do not proceed flag
-			}
-		});
-		if (proceed) {
-
-			var registrar = true;
-			$("#form_establecimiento input[name='telefono'], #form_establecimiento input[name='celular']").each(function(){
-				if ($(this).val().length > 0 ) {
-					if (isNaN($(this).val())) {
-						$("#regEstable #error").append("<p>El campo de "+$(this).attr("name")+ " solo acepta numeros</p>");
-							registrar = false;
-					}else{
-						if ($(this).val().length != 10) {
-						
-							$("#regEstable #error").append("<p>El numero de "+$(this).attr("name")+" debe de contener 10 caracteres</p>");
-							registrar = false;
-						}
-					}
-				}
-				
-			});
-
-
-		    if (registrar) {
-
-		    	$.post("php/registroNegocio.php", $("#form_establecimiento").serialize(),  function(response) {
-							
-				
-					if(response.type == "error"){ //load json data from server and output message 
-						$("#regEstable #error").empty();    
-						$("#regEstable #error").append(response.text);
-						$("#regEstable #error").show('slow');			
-					}else{
-
-						$(window).attr('location', 'index.php');
-
-					}
-				}, "json");
-
-		    }else{
-		    	$("#regEstable #error").show('slow');
-		    }
-
-		    
-			
-		
-		}else{
-			$("#regEstable #error").append("<p>Datos Faltantes.</p>");
-			$("#regEstable #error").show('slow');
-		}
-
-	});
-
-	$("#form_establecimiento input").keyup(function(){
-		$(this).css('border-color','');
-		$("#regEstable #error").hide('slow',function(){
-		    		$("#regEstable #error").empty();
-		    	});
-	});
-
-	$("#form_establecimiento select[required=true]").focus(function(){
-		$(this).css('border-color','');
-	});
+	
 
 	//menu dropdown en index
 

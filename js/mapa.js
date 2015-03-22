@@ -8,6 +8,7 @@ $(function(){
     var geocoder;
     var myMarker;
     var markers = [];
+    var imgMarker = ["img/icon_restaurant.png","img/icon_bar_2.png","img/icon_hobbie.png"];
 
     function initialize() {
       geocoder = new google.maps.Geocoder();
@@ -114,11 +115,44 @@ $(function(){
 
       //posicionar marcadores segun categoria
     
-      var imgMarker = ["img/icon_restaurant.png","img/icon_bar_2.png","img/icon_hobbie.png"];
+      
       $(".controles #action1 #categories a").click(function(e){
-        $.ajax({ 
-          url: 'php/getEstablecimientos.php', 
-          data: 'idCategoria=' + $(this).attr('name'), 
+        var findResult = function(results, name){
+            var result = $.grep(results, function(obj){
+              return obj.types[0] == name && obj.types[1] == "political";
+            });
+            return result ? result[0].long_name : null;
+        };
+        var latlng = map.getCenter();
+          var datos = { 
+                idCategoria: $(this).attr('name'), 
+              }
+        
+        geocoder.geocode( {'latLng': latlng}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+              resultados = results[0].address_components;             
+             datos.ciudad = findResult(resultados, "locality");
+             datos.estado = findResult(resultados, "administrative_area_level_1");
+             datos.pais = findResult(resultados, "country");
+             
+             mapeoMarkers(datos);
+             
+            map.setZoom(15);
+            
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+            
+          }
+        });
+       
+
+      });
+
+    function mapeoMarkers(datos){
+
+       $.ajax({ 
+          url: 'php/getEstablecimientos.php',
+          data: datos, 
           dataType: 'json', 
         }).done(function(data){
           
@@ -158,8 +192,7 @@ $(function(){
           
           
         });
-
-      });
+    }
 
 
 //////////////////Campo de busqueda ////////////////
@@ -167,11 +200,14 @@ $(function(){
   $(".busqueda #buscarPlace").click(function(){
 
     if ($(".busqueda #search").val() != '') {
+      
       $("#loading").show();
       var address = $(".busqueda #search").val();
       geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           map.setCenter(results[0].geometry.location);
+          $(".busqueda #search").val(results[0].formatted_address);
+          
           map.setZoom(15);
           $("#loading").hide();
         } else {
@@ -179,7 +215,7 @@ $(function(){
           $("#loading").hide();
         }
       });
-      $(".busqueda #search").val('');
+      
     }
 
   });

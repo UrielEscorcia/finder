@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 20-03-2015 a las 17:47:17
+-- Tiempo de generación: 21-03-2015 a las 23:57:26
 -- Versión del servidor: 5.5.38
 -- Versión de PHP: 5.6.2
 
@@ -49,17 +49,22 @@ CREATE TABLE `establecimientos` (
   `propietario` int(11) NOT NULL,
   `lat` varchar(30) NOT NULL,
   `lng` varchar(30) NOT NULL,
-  `categoria` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+  `categoria` int(11) NOT NULL,
+  `localidad` varchar(80) NOT NULL,
+  `estado` varchar(80) NOT NULL,
+  `pais` varchar(80) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `establecimientos`
 --
 
-INSERT INTO `establecimientos` (`id_Establecimientos`, `nombre`, `direccion`, `tel`, `celular`, `propietario`, `lat`, `lng`, `categoria`) VALUES
-(13, 'mi casa', '12 sur 11533-18', '2233445566', '', 1, '18.972341099999998', '-98.22507759999999', 3),
-(18, 'aadsa', '3453', '', '', 1, '18.976774844560552', '-98.22010425498655', 2),
-(19, 'casas', '344', '', '', 1, '18.977811081600436', '-98.2215924227234', 3);
+INSERT INTO `establecimientos` (`id_Establecimientos`, `nombre`, `direccion`, `tel`, `celular`, `propietario`, `lat`, `lng`, `categoria`, `localidad`, `estado`, `pais`) VALUES
+(13, 'mi casa', '12 sur 11533-18', '2233445566', '', 1, '18.972341099999998', '-98.22507759999999', 3, 'Puebla', 'Puebla', 'México'),
+(18, 'aadsa', '3453', '', '', 1, '18.976774844560552', '-98.22010425498655', 2, 'Puebla', 'Puebla', 'México'),
+(19, 'casas', '344', '', '', 1, '18.977811081600436', '-98.2215924227234', 3, 'Puebla', 'Puebla', 'México'),
+(20, 'mi localito', 'aqui esta', '2233345563', '', 1, '18.981922055419556', '-98.22882531960448', 1, 'Puebla', 'Puebla', 'México'),
+(22, 'otro restaurant', 'qwertt', '', '', 1, '18.981062038754768', '-98.21897446344605', 1, 'Puebla', 'Puebla', 'México');
 
 -- --------------------------------------------------------
 
@@ -120,7 +125,7 @@ MODIFY `id_Categorias` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT de la tabla `establecimientos`
 --
 ALTER TABLE `establecimientos`
-MODIFY `id_Establecimientos` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `id_Establecimientos` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --

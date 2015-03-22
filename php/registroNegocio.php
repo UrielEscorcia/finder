@@ -19,9 +19,12 @@ if ($_POST) {
 	$latitud = $_POST['lat'];
 	$longitud = $_POST['lng'];
 	$categoria = $_POST['categoria'];
+	$ciudad = $_POST['ciudad'];
+	$estado = $_POST['estado'];
+	$pais = $_POST['pais'];
 			
 	//registro de establecimiento
-	$query = "INSERT INTO establecimientos (nombre,direccion,tel,celular,propietario,lat,lng,categoria) VALUES ('$nombre','$direccion','$telefono','$celular','$propietario','$latitud','$longitud','$categoria')";
+	$query = "INSERT INTO establecimientos (nombre,direccion,tel,celular,propietario,lat,lng,categoria,localidad,estado,pais) VALUES ('$nombre','$direccion','$telefono','$celular','$propietario','$latitud','$longitud','$categoria','$ciudad','$estado','$pais')";
 	if (mysql_query($query,$dbConect)) {
 		echo json_encode(array("type"=>"succes", "text" => "Redireccionando."));	
 	}else
