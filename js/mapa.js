@@ -6,6 +6,8 @@ $(function(){
     var lat = 19.005160;
     var lng = -98.204403;
     var geocoder;
+    var myMarker;
+    var markers = [];
 
     function initialize() {
       geocoder = new google.maps.Geocoder();
@@ -71,6 +73,11 @@ $(function(){
                                              position.coords.longitude);
 
             map.setCenter(posInicio);
+            myMarker = new google.maps.Marker({
+              position: posInicio,
+              map: map,
+            });
+
             $("#loading").hide();
           }, function() {
             handleNoGeolocation(true);
@@ -105,8 +112,8 @@ $(function(){
 
 
       //posicionar marcadores segun categoria
-      var markers = [];
-
+    
+      var imgMarker = ["img/icon_restaurant.png","img/icon_bar_2.png","img/icon_hobbie.png"];
       $(".controles #action1 #categories a").click(function(e){
         $.ajax({ 
           url: 'php/getEstablecimientos.php', 
@@ -123,7 +130,7 @@ $(function(){
 
           for (var i = 0; i < data.length; i++) {
             var posMarker = new google.maps.LatLng(parseFloat(data[i].lat), parseFloat(data[i].lng));
-            var image = 'img/marker 2.png';
+            var image = imgMarker[data[i].categoria - 1];
             var marker = new google.maps.Marker({
               position: posMarker,
               map: map,
@@ -185,6 +192,8 @@ $(function(){
                                              position.coords.longitude);
 
             map.setCenter(center);
+            myMarker.setPosition(center);
+
             $("#loading").hide();
           
           }, function() {

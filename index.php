@@ -64,7 +64,7 @@
 			<ul class="menu-items">
 				
 				<li class="busqueda">
-					<input type ="text" name = "search" id="search" placeholder = "Buscar"/>
+					<input type ="search" name = "search" id="search" placeholder = "Buscar"/>
 					<a id="buscarPlace" href="#"><img src="img/lupa2.png"></a>
 					<a id="geolocalizar" href="#"><img src="img/loc.png"></a>
 				</li>
