@@ -155,33 +155,48 @@ $(function(){
           data: datos, 
           dataType: 'json', 
         }).done(function(data){
-          
-          if (markers.length != 0) { //delete markers
-            for (var i = 0; i < markers.length; i++) {
-              markers[i].setMap(null);
+
+        deleteAllMarkers();
+       
+          if (data.length != 0) {
+            $(".listaNegocios").show();
+            $(".listaNegocios .lista").empty();
+            for (var i = 0; i < data.length; i++) {
+              var posMarker = new google.maps.LatLng(parseFloat(data[i].lat), parseFloat(data[i].lng));
+              var image = imgMarker[data[i].categoria - 1];
+              var marker = new google.maps.Marker({
+                position: posMarker,
+                map: map,
+                icon: image
+              });
+
+              marker.info = new google.maps.InfoWindow({
+                content: '<b>Nombre:</b> ' + data[i].nombre + '<br> <b>Direccion:</b> ' + data[i].direccion + '<br> <b>Telefono:</b> ' + data[i].tel + '<br><b>Celular:</b> ' + data[i].celular + '<br>'
+              });
+
+              
+              markers.push(marker);
+
+              var datos = '<h4>'+data[i].nombre+'</h4><p>'+data[i].direccion+'</p><p>Tel: '+data[i].tel+' | Cel: '+data[i].celular+'</p>';
+              var imgDiv = '<img src="img/estable.png"><a id="ver" name="'+i+'" href="#">Ver</a><a id="rute" href="#">Ruta</a>';
+
+              $(".listaNegocios .lista").append('<li class="item"><div class="container"></div></li>');
+              $(".listaNegocios .lista li:last-child .container").append('<div class="datos"></div>');
+              $(".listaNegocios .lista li:last-child .container .datos").append(datos);
+              $(".listaNegocios .lista li:last-child .container").append('<div class="img"></div>');
+              $(".listaNegocios .lista li:last-child .container .img").append(imgDiv);
+              
+
             }
-            markers = [];
+             $(".img #ver").click(function(){
+
+              var index = parseInt($(this).attr('name'));
+              toggleBounce(markers[index]);
+
+
+            });
           }
 
-          for (var i = 0; i < data.length; i++) {
-            var posMarker = new google.maps.LatLng(parseFloat(data[i].lat), parseFloat(data[i].lng));
-            var image = imgMarker[data[i].categoria - 1];
-            var marker = new google.maps.Marker({
-              position: posMarker,
-              map: map,
-              icon: image
-            });
-
-            marker.info = new google.maps.InfoWindow({
-              content: '<b>Nombre:</b> ' + data[i].nombre + '<br> <b>Direccion:</b> ' + data[i].direccion + '<br> <b>Telefono:</b> ' + data[i].tel + '<br><b>Celular:</b> ' + data[i].celular + '<br>'
-            });
-
-            marker.info.open(map, marker);
-
-            markers.push(marker);
-            
-
-          }
           
           /*for (var i = 0; i < markers.length; i++) {
             google.maps.event.addListener(markers[i], 'click', function() {
@@ -194,14 +209,34 @@ $(function(){
         });
     }
 
+   
+
+    function toggleBounce(marker) {
+      if (marker.getAnimation() != null) {
+        marker.setAnimation(null);
+      } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+      }
+    }
+
+    function deleteAllMarkers(){
+      if (markers.length != 0) { //delete markers
+            for (var i = 0; i < markers.length; i++) {
+              markers[i].setMap(null);
+            }
+            markers = [];
+          }
+    }
+
 
 //////////////////Campo de busqueda ////////////////
 
   $(".busqueda #buscarPlace").click(function(){
 
     if ($(".busqueda #search").val() != '') {
-      
+      $(".listaNegocios").hide();
       $("#loading").show();
+      deleteAllMarkers();
       var address = $(".busqueda #search").val();
       geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
@@ -221,7 +256,7 @@ $(function(){
   });
 
   $(".busqueda #geolocalizar").click(function(){
-    
+    deleteAllMarkers();
     $("#loading").show();
     if(navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {

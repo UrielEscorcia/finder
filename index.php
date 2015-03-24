@@ -112,6 +112,14 @@
 
 		<div id="loading">
 			
+		</div>
+
+		<div class="listaNegocios">
+			<ul class="lista">
+				
+				
+			</ul>
+			
 		</div>	
 
 				

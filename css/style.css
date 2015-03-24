@@ -1,6 +1,7 @@
 html, body {
 	height: 100%;
 	margin: 0;
+	font-family: 'Arial';
 	
 }
 
@@ -84,7 +85,7 @@ html, body {
     border-top:1px solid #b4c1cb;
     box-shadow:inset 0 1px 2px rgba(0,0,0,0.08);
 	height: 30px;
-	width: 70%;
+	width: 50%;
 	background: white;
 	opacity: 0.6;
 	font-size: 16px;
@@ -173,6 +174,97 @@ html, body {
     margin-left: -50px;
     width: 100px;
     height: 100px;
+}
+
+.listaNegocios{
+	display: none;
+	width: 20%;
+	height: 50%;
+	position: absolute;
+	left: 75%;
+	top: 25%;
+	background-color: rgba(244,244,244,0.4);
+	border-radius: 20px;
+	-webkit-box-shadow: 10px 5px 50px -2px rgba(0,0,0,0.61);
+	-moz-box-shadow: 10px 5px 50px -2px rgba(0,0,0,0.61);
+	box-shadow: 10px 5px 50px -2px rgba(0,0,0,0.61);
+	overflow-y: scroll; 
+}
+
+.listaNegocios .lista{
+	padding: 0 10px 0;
+	width: 94%;
+}
+
+.listaNegocios .lista .item{
+	background-color: rgba(255,255,255,0.8);
+		
+	 display: block;
+	 float: none;
+	 height: 7em;
+	 padding: 8px 0;
+	 text-align: left;
+	 width: 100%;
+	 margin: 5px 0;
+}
+
+.listaNegocios .lista .item .container{
+	padding: 0 0.5em;
+	float: left;
+	width: 95%;
+}
+
+.listaNegocios .lista .item .container .datos{
+	float: left;
+	width: 60%;
+	height: 100%
+
+}
+
+
+.listaNegocios .lista .item .container .datos p{
+	margin-top: 0;
+	margin-bottom: 0.5em;
+	color: #A69E9E;
+	font-size: 0.8em;
+	
+}
+
+.listaNegocios .lista .item .container .img{
+	float: left;
+	width: 40%;
+	height: 100%;
+	text-align: center;
+}
+
+.listaNegocios .lista .item .container .img img{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2px;
+    margin-bottom: 0.7em;
+	max-width: 60%;
+}
+
+.listaNegocios .lista .item .container .img a{
+	text-decoration: none;
+	padding: 3px;
+	color: white;
+	display: inline-block;
+	width: 3em;
+	font-size: 0.7em;
+	margin-left: 2px;
+
+}
+.listaNegocios #ver{
+	background: #D8D8D8;
+	border-radius: 40px;
+}
+
+.listaNegocios #rute{
+	
+	background: #80A089;
+	border-radius: 40px;
 }
 
 
