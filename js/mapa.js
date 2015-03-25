@@ -207,7 +207,6 @@ $(function(){
               var index = parseInt($(this).attr('name'));
               if ($(this).html() == "Ruta") {
                 $(".img #rute").not($(this)).html("Ruta");
-                directionsDisplay.setMap(map);
                 getRute(markers[index].getPosition());
                 $(this).html("Limpia");
               }else{
@@ -262,6 +261,7 @@ $(function(){
       directionsService.route(request, function(response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
           directionsDisplay.setDirections(response);
+          directionsDisplay.setMap(map);
         }
       });
 
