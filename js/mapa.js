@@ -9,9 +9,13 @@ $(function(){
     var myMarker;
     var markers = [];
     var imgMarker = ["img/icon_restaurant.png","img/icon_bar_2.png","img/icon_hobbie.png"];
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+    
 
     function initialize() {
       geocoder = new google.maps.Geocoder();
+      directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
         mapOptions = {
           zoom: 15,
           scrollwheel: false,
@@ -66,6 +70,7 @@ $(function(){
         };
 
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        directionsDisplay.setMap(map);
 
         // Try HTML5 geolocation
         if(navigator.geolocation) {
@@ -161,6 +166,7 @@ $(function(){
           if (data.length != 0) {
             $(".listaNegocios").show();
             $(".listaNegocios .lista").empty();
+            directionsDisplay.setMap(); //limpia ruta si existe
             for (var i = 0; i < data.length; i++) {
               var posMarker = new google.maps.LatLng(parseFloat(data[i].lat), parseFloat(data[i].lng));
               var image = imgMarker[data[i].categoria - 1];
@@ -178,7 +184,7 @@ $(function(){
               markers.push(marker);
 
               var datos = '<h4>'+data[i].nombre+'</h4><p>'+data[i].direccion+'</p><p>Tel: '+data[i].tel+' | Cel: '+data[i].celular+'</p>';
-              var imgDiv = '<img src="img/estable.png"><a id="ver" name="'+i+'" href="#">Ver</a><a id="rute" href="#">Ruta</a>';
+              var imgDiv = '<img src="img/estable.png"><a id="ver" name="'+i+'" href="#">Ver</a><a id="rute" name="'+i+'" href="#">Ruta</a>';
 
               $(".listaNegocios .lista").append('<li class="item"><div class="container"></div></li>');
               $(".listaNegocios .lista li:last-child .container").append('<div class="datos"></div>');
@@ -191,19 +197,30 @@ $(function(){
              $(".img #ver").click(function(){
 
               var index = parseInt($(this).attr('name'));
-              toggleBounce(markers[index]);
+              toggleBounce(markers[index],$(this));
+
+              //#979797
+
+              });
+            $(".img #rute").click(function(){
+
+              var index = parseInt($(this).attr('name'));
+              if ($(this).html() == "Ruta") {
+                $(".img #rute").not($(this)).html("Ruta");
+                directionsDisplay.setMap(map);
+                getRute(markers[index].getPosition());
+                $(this).html("Limpia");
+              }else{
+                $(this).html("Ruta");
+                directionsDisplay.setMap();
+              }
+              
 
 
             });
+
           }
 
-          
-          /*for (var i = 0; i < markers.length; i++) {
-            google.maps.event.addListener(markers[i], 'click', function() {
-              markers[i].info.open(map, markers[i]);
-            });
-            
-          }*/
           
           
         });
@@ -211,11 +228,13 @@ $(function(){
 
    
 
-    function toggleBounce(marker) {
+    function toggleBounce(marker,object) {
       if (marker.getAnimation() != null) {
         marker.setAnimation(null);
+        object.css('background','#D8D8D8');
       } else {
         marker.setAnimation(google.maps.Animation.BOUNCE);
+        object.css('background','#979797');
       }
     }
 
@@ -228,6 +247,26 @@ $(function(){
           }
     }
 
+    ////////servicio de Direcciones//////////
+
+    function getRute(positionEnd){
+      var posInit = myMarker.getPosition();
+      
+      var request = {
+        origin:posInit,
+        destination:positionEnd,
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC
+      };
+
+      directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(response);
+        }
+      });
+
+    }
+
 
 //////////////////Campo de busqueda ////////////////
 
@@ -237,6 +276,7 @@ $(function(){
       $(".listaNegocios").hide();
       $("#loading").show();
       deleteAllMarkers();
+      directionsDisplay.setMap();//limpia ruta si existe
       var address = $(".busqueda #search").val();
       geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
@@ -257,6 +297,8 @@ $(function(){
 
   $(".busqueda #geolocalizar").click(function(){
     deleteAllMarkers();
+    directionsDisplay.setMap();//limpia ruta si existe
+    $(".listaNegocios").hide();
     $("#loading").show();
     if(navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -267,6 +309,7 @@ $(function(){
             myMarker.setPosition(center);
 
             $("#loading").hide();
+            $(".busqueda #search").val('');
           
           }, function() {
             handleNoGeolocation(true);

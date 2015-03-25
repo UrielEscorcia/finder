@@ -5,6 +5,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<title>Finder</title>
+	<link href="css/login.css" rel='stylesheet' type='text/css' />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- Add mousewheel plugin (this is optional) -->
 	<script type="text/javascript" src="js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
@@ -17,35 +19,48 @@
 </head>
  
 <body>
-<div id="registro" >
- 	
-	<h2>Registro</h2>
-	<div id="error"></div>
+<div id="registro" class="login-form">
 
 	<form method = "POST" id="form_registro">
-		<label for="nombre">Nombre:</label>
-		<input type ="text" name = "nombre"  placeholder = "Escribe tu nombre" required="true"/><br><br>
-		<label for="apellidos">Apellidos:</label>
-		<input type="text" name = "apellidos" placeholder = "Apellidos"/><br><br>
-		<label for="email">Email:</label>
-		<input type ="email" name = "email" placeholder = "Correo electronico" required="true"/><br><br>
-		<label for="password">Contraseña:</label>
-		<input type ="password" name = "password" placeholder = "Escribe tu contraseña" required="true"/><br><br>
-		<label for="re-password">Repite Contraseña:</label>
-		<input type ="password" name = "re-password" placeholder = "Confirmar contraseña" required="true"/><br><br>
-		<label for="birthday">Fecha de nacimiento:</label>
-		<input type="date" name = "birthday" required="true"/><br><br>
-		<label for="tipo">Tipo Usuario:</label>
-		<select name="tipo" required="true">
-			<option value="usuario">Usuario</option>
-			<option value="dueño">Dueño Establecimeinto</option>
-		</select> <br><br>
-		<input type ="radio" name = "sex" value="mujer" />
-		<label for="sex">Mujer</label><br><br>
-		<input type ="radio" name = "sex" value="hombre" />
-		<label for="sex">Hombre</label><br><br>
+		<div id="error"></div>
+		<li>
+			<input type ="text" name = "nombre"  placeholder = "Escribe tu nombre" required="true"/>
+		</li>
+		<li>
+			<input type="text" name = "apellidos" placeholder = "Apellidos"/>
+		</li>
+		<li>	
+			<input type ="email" name = "email" placeholder = "Correo electronico" required="true"/>
+		</li>
+		<li>
+			<input type ="password" name = "password" placeholder = "Escribe tu contraseña" required="true"/>
+		</li>
+		<li>
+			<input type ="password" name = "re-password" placeholder = "Confirmar contraseña" required="true"/>
+		</li>
+		<li>	
+			<input type="date" name = "birthday" required="true"/>
+		</li>
+		<li>
+			<label for="tipo">Tipo Usuario:</label>
+			<select name="tipo" required="true">
+				<option value="usuario">Usuario</option>
+				<option value="dueño">Dueño Establecimeinto</option>
+			</select> <br><br>
+		</li>
+		<li>
+			<label for="sex">Hombre</label>
+			<input type ="radio" name = "sex" value="hombre" />
+			<label for="sex">Mujer</label>
+			<input type ="radio" name = "sex" value="mujer" />
+		</li>
 	</form>
-	<input type ="submit" id="registrar_btn" value = "Registrar"/><br><br>
+	<div class="p-container">
+		
+		<input type ="submit" id="registrar_btn" value = "Registrar"/>
+		<div class="clear"> </div>
+	</div>
+	
 </div>
 	
 	

@@ -93,7 +93,7 @@
 									echo '<li><a href="index.php?salir=true">Salir</a></li>';
 								}else{
 									echo '<li><a class="various" data-fancybox-type="iframe" href="login.html">Login</a></li>';
-									echo '<li><a class="various" data-fancybox-type="iframe" href="registro.php">Sign in</a></li>';;
+									echo '<li><a class="signinLight" data-fancybox-type="iframe" href="registro.php">Sign in</a></li>';;
 								}
 								
 

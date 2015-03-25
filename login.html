@@ -4,6 +4,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Finder</title>
+	<link href="css/login.css" rel='stylesheet' type='text/css' />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- Add mousewheel plugin (this is optional) -->
 	<script type="text/javascript" src="js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
@@ -16,16 +18,28 @@
 </head>
  
 <body>
- 	<div id="login">
-		<h2>Inicio</h2>
-		<div id="error"></div>
 
-		<form  method="post" id="form_login">
-			<input type ="email" name = "email" id="email" required="true" placeholder = "Email"/><br><br>
-			<input type ="password" name = "password" id="password" required="true" placeholder = "Password"/><br><br>
+ 	<div class="login-form">
+		
+		
+
+		<form method="post" id="form_login">
+			<div id="error"></div>
+			<li>
+				<input type ="email" class="text" name = "email" id="email" required="true" placeholder = "Email"/><a href="#" class=" icon user"></a>
+			</li>
+			<li>
+				<input type ="password" name = "password" id="password" required="true" placeholder = "Password"/><a href="#" class=" icon lock"></a>
+			</li>
+
 		</form>
-		<input type ="submit" id="login_btn" value = "Entrar"/><br><br>
-		<a href="registro.php">Registrarse</a>
+		<div class="p-container">
+				<label class="checkbox"><a href="registro.php">Registrarse</a></label>
+				<input type="submit" id="login_btn" value="Entrar" >
+				<div class="clear"> </div>
+			</div>
+
+		
 	</div>
 	
 </body>

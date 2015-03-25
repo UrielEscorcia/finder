@@ -10,13 +10,14 @@ $(function(){
 			    }
 		});
 		if (proceed) {
+			console.log($("#form_login").serialize());
 			$.post("php/login.php", $("#form_login").serialize(),  function(response) {
 							
 				
 				if(response.type == "error"){ //load json data from server and output message     
-					$("#login #error").empty();
-					$("#login #error").append(response.text);
-					$("#login #error").show('slow');
+					$("#error").empty();
+					$("#error").append(response.text);
+					$("#error").show('slow');
 					$("#form_login input[required=true]").each(function(){
 						$(this).css('border-color','red'); //change border color to red   
 					});
@@ -29,16 +30,16 @@ $(function(){
 			}, "json");
 		
 		}else{
-			$("#login #error").empty();
-			$("#login #error").append("<p>Datos Faltantes.</p>");
-			$("#login #error").show('slow');
+			$("#error").empty();
+			$("#error").append("<p>Datos Faltantes.</p>");
+			$("#error").show('slow');
 		}
 
 	});
 
 	$("#form_login input[required=true]").keyup(function(){
 		$(this).css('border-color','');
-		$("#login #error").hide('slow');
+		$("#error").hide('slow');
 	});
 
 	//formulario de registro usuarios
@@ -170,8 +171,28 @@ $(function(){
     //fancybox
     $(".various").fancybox({
     	openEffect	: 'fade',
-		closeEffect	: 'fade	'
+		closeEffect	: 'fade	',
+		maxWidth	: 800,
+		maxHeight	: 600,
+		fitToView	: false,
+		width		: '70%',
+		height		: '70%',
+		autoSize	: false,
+		closeClick	: false,
     });
+
+    $(".signinLight").fancybox({
+    	openEffect	: 'fade',
+		closeEffect	: 'fade	',
+		maxWidth	: 800,
+		maxHeight	: 600,
+		fitToView	: false,
+		width		: '70%',
+		height		: '70%',
+		autoSize	: false,
+		closeClick	: false,
+    });
+    
 
 });
 
