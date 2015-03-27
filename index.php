@@ -82,7 +82,7 @@
 						</ul>
 					</li>
 					<li id="action2">
-						<a href="#" id="acionesUsr"><img src="img/usr.png"></a>
+						<a href="#" id="acionesUsr"><img src="img/usr.png"><?php if (!empty($arrayUser)) echo $arrayUser['nombre'] ?></a>
 						<ul id="actions">
 							<li class="arrow">arrow</li>
 							<?php
@@ -110,9 +110,7 @@
 				
 		</nav>
 
-		<div id="loading">
-			
-		</div>
+		<div id="loading"></div>
 
 		<div class="listaNegocios">
 			<ul class="lista">

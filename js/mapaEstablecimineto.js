@@ -6,9 +6,12 @@ $(function(){
   var lng = -98.204403;
   var marker;
   var geocoder;
+  var establecimientos = [];
 
 
     $("#form_establecimiento input[name='ubication']").change(function(){
+      $("#mapa").append('<div id="loading" style="display:none;"></div>');
+      $("#loading").show();
       geocoder = new google.maps.Geocoder();
       $("#form_establecimiento #ubicacion").css({'border-color':'','border-style':''});
       if ($(this).val() == "true") { //geolocalizacion negocio automatica
@@ -53,13 +56,15 @@ $(function(){
           
         };
 
-        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
         var infowindow = new google.maps.InfoWindow({
                 map: map,
                 position: posInicio,
                 content: 'Tu negocio esta aqui.'
               });
+
+        $("#loading").hide();
       
     }
 
@@ -70,7 +75,7 @@ $(function(){
           mapTypeId: google.maps.MapTypeId.HYBRID
         };
 
-        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        map = new google.maps.Map(document.getElementById('mapa'), mapOptions);
 
         var infowindow = new google.maps.InfoWindow({
                 content: 'Arrastra el marcador y posicionalo en donde se encuentra tu negocio.'
@@ -82,6 +87,7 @@ $(function(){
           draggable: true,
           title:"Negocio"
         });
+        $("#loading").hide();
 
         infowindow.open(map,marker);
 
@@ -222,6 +228,85 @@ $(function(){
           }
         }, "json");
   }
+
+  //Hide SubLevel Menus
+   $('.controles ul li ul').hide();
+
+  $('.controles ul li #acionesUsr').click(
+    
+    function(event){
+      event.stopPropagation();
+      //Remove the Border
+    $('ul li.arrow', '#action2').css('border-bottom', '0');
+       
+    if ($('ul', '#action2').css('display') == 'none')
+      $('ul', '#action2').slideDown();
+    else
+      $('ul', '#action2').slideUp();
+        
+    //Hide Other Menus
+    $('.controles ul li ul').not($('ul', '#action2')).slideUp();
+     
+       
+    });
+
+   //hide menus
+  $(document).mousedown( function(){
+      $('ul', '#action2').slideUp();
+      $('ul', '#action1').slideUp();
+    });
+
+
+    //get lista negocios por dueño
+
+    getNegocios($(".tab_container").attr('name'));
+
+    function getNegocios(id_user){
+      console.log("yay");
+      $.ajax({ 
+          url: 'php/getNegociosbyUser.php',
+          data: {datos:id_user}, 
+          dataType: 'json', 
+        }).done(function(data){
+
+       
+          if (data.length != 0) {
+            for (var i = 0; i < data.length; i++) {
+
+              var datos = '<h4>'+data[i].nombre;
+              var imgDiv = '<img src="img/estable.png"><a id="rute" name="'+i+'" href="#">Ver</a><a id="ver" name="'+i+'" href="#">Borra</a>';
+
+              $(".listaNegocio .lista").append('<li class="item" name="'+data[i].id_Establecimientos+'"><div class="container"></div></li>');
+              $(".listaNegocio .lista li:last-child .container").append('<div class="datos"></div>');
+              $(".listaNegocio .lista li:last-child .container .datos").append(datos);
+              $(".listaNegocio .lista li:last-child .container").append('<div class="img"></div>');
+              $(".listaNegocio .lista li:last-child .container .img").append(imgDiv);
+
+              establecimientos.push(data[i]);
+            }
+          }
+
+          
+          
+        });
+    }
+
+    //navegacion 
+     //When page loads...
+     $(".tab_content").hide(); //Hide all content
+     
+     $(".tab_content:first").show(); //Show first tab content
+     
+     //On Click Event
+     $("#action1 a").click(function() {
+    
+        $(".tab_content").hide(); //Hide all tab content
+       
+        var activeTab = $(this).attr("href"); //Find the href attribute value to identify the active tab + content
+        $(activeTab).fadeIn(); //Fade in the active ID content
+        return false;
+     });
+
 
 
 

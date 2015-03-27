@@ -48,57 +48,118 @@
 	<!-- Add fancyBox -->
 	<link rel="stylesheet" href="js/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 	<script type="text/javascript" src="js/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-	<script src="js/init.js"></script>
+	
 	<script src="js/mapaEstablecimineto.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	
 </head>
  
-<body>
- 	
-<?php
-	echo "<h2>Hola ".$arrayUser['nombre']."</h2>";
-	echo $_SESSION['user'];
-	
-?>
-	<a href="index.php?salir=true">Salir</a>
-	<!-- registro establecimiento -->
-	<div id="regEstable" >
- 	
-		<h2>Registrar Establecimiento</h2>
-		<div id="error"></div>
-		<form method = "POST" id="form_establecimiento">
+<body id="bodyEstable">
+
+	<nav class ="navbar">
+		<div class="menu">
+			<a class="sitename" href="index.php">Finder</a>
+			<ul class="menu-items">
+				
+				<li class="busqueda" style="display:none;">
+					<input type ="search" name = "search" id="search" placeholder = "Buscar"/>
+					<a id="buscarPlace" href="#"><img src="img/lupa2.png"></a>
+					<a id="geolocalizar" href="#"><img src="img/loc.png"></a>
+				</li>
+				<li class="controles">
+					<ul>
+					<li id="action1">
+						<a href="#tab1" id="" class="tabNegocio">Establecimeintos</a>
+						<a href="#tab2" id="" class="tabNew">Agregar nuevo</a>
+					</li>
+					<li id="action2">
+						<a href="#" id="acionesUsr"><img src="img/usr.png"><?php echo $arrayUser['nombre']; ?></a>
+						<ul id="actions">
+							<li class="arrow">arrow</li>
+							<?php
+								if (!empty($arrayUser)) {
+									
+									echo '<li><a href="index.php?salir=true">Salir</a></li>';
+								}else{
+									echo '<li><a class="various" data-fancybox-type="iframe" href="login.html">Login</a></li>';
+									echo '<li><a class="signinLight" data-fancybox-type="iframe" href="registro.php">Sign in</a></li>';;
+								}
+								
+
+							?>
 			
-			<input type ="text" name = "nombre"  placeholder = "Nombre del establecimiento" required="true"/><br><br>
+						</ul>
+					</li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
 			
-			<input type="text" name = "direccion" placeholder = "Direccion establecimiento" required = "true"/><br><br>
-			
-			<input type ="text" name = "telefono" placeholder = "Número telefonico" /><br><br>
-			<input type ="text" name = "celular" placeholder = "Número celular" /><br><br> 
-			
-			<select name="categoria" required="true" >
-					<option value="">Categoria</option>
-					<?php 
-						foreach ($arrayCategoria as $categoria) {
-							echo '<option value ="'.$categoria['id_Categorias'].'">'.$categoria['nombreCategoria'].'</option>' ;
-						}
-					 ?>
-			</select> <br><br>
-			<input type ="text" name = "lat" placeholder = "Latitud" required="true" />
-			<input type ="text" name = "lng" placeholder = "Longitud" required="true" />
-			<br><br>
-			<div id="ubicacion">
-				<label from = "ubication">Estoy en mi negocio</label>
-				<input type ="radio" name = "ubication" value= "true" />
-				<label from = "ubication1">Elegir ubicacion manual</label>
-				<input type ="radio" name = "ubication" value="false" />
+				
+		</nav>
+
+		<div class="content">
+			<div class="tab_container" name="<?php echo $_SESSION['id_Usr']; ?>">
+				 <div id="tab1" class="tab_content">
+        			<div class="listaNegocio">
+        				<ul class="lista">
+							
+						</ul>
+        			</div>
+        			<div class="datosNegocios">
+        				
+        			</div>
+			    </div>
+			    <div id="tab2" class="tab_content">
+			       <!-- registro establecimiento -->
+					<div id="regEstable" class="formularioAltas">
+				 	
+						
+						<div id="error"></div>
+						<form method = "POST" id="form_establecimiento">
+							
+							<input type ="text" name = "nombre"  placeholder = "Nombre del establecimiento" required="true"/><br><br>
+							
+							<input type="text" name = "direccion" placeholder = "Direccion establecimiento" required = "true"/><br><br>
+							
+							<input type ="text" name = "telefono" placeholder = "Número telefonico" /><br><br>
+							<input type ="text" name = "celular" placeholder = "Número celular" /><br><br> 
+							
+							<select name="categoria" required="true" >
+									<option value="">Categoria</option>
+									<?php 
+										foreach ($arrayCategoria as $categoria) {
+											echo '<option value ="'.$categoria['id_Categorias'].'">'.$categoria['nombreCategoria'].'</option>' ;
+										}
+									 ?>
+							</select> <br><br>
+							<input type ="text" name = "lat" placeholder = "Latitud" required="true" />
+							<input type ="text" name = "lng" placeholder = "Longitud" required="true" />
+							<br><br>
+							<div id="ubicacion">
+								<label from = "ubication">Estoy en mi negocio</label>
+								<input type ="radio" name = "ubication" value= "true" />
+								<label from = "ubication1">Elegir ubicacion manual</label>
+								<input type ="radio" name = "ubication" value="false" />
+							</div>
+							
+						</form>
+						<input type ="submit" id="registrar_negocio_btn" value = "Registrar"/><br><br>
+					</div>
+        			<div id="mapa">
+        				<div id="loading" style="display:none;"></div>
+        			</div>
+			    </div>
+
 			</div>
 			
-		</form>
-		<input type ="submit" id="registrar_negocio_btn" value = "Registrar"/><br><br>
-	</div>
+		</div>
+ 	
+
+	
 	<!-- mapa -->
-	<div id="map-canvas"></div>
+	
 	
 	
 	

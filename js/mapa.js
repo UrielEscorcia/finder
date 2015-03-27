@@ -115,7 +115,7 @@ $(function(){
         map.setCenter(options.position);
       }
 
-      google.maps.event.addDomListener(window, 'load', initialize);
+  
 
 
       //posicionar marcadores segun categoria
@@ -319,5 +319,7 @@ $(function(){
           handleNoGeolocation(false);
         }
      });
+
+  initialize();
 
 });

@@ -2,7 +2,16 @@ html, body {
 	height: 100%;
 	margin: 0;
 	font-family: 'Arial';
+	overflow: hidden;
 	
+}
+
+#bodyEstable {
+
+    background:  url(../img/ruido.png) repeat, url(../img/fondoMaps.png);
+    z-index: -1; /* Keep the background behind the content */
+    /* don't forget to use the prefixes you need */
+    
 }
 
 #map-canvas {
@@ -108,7 +117,7 @@ html, body {
 }
 
 .controles img{ 
-	margin-right: 3em;
+	margin-right: 1em;
 	margin-left: 0.5em;
 }
  
@@ -172,8 +181,8 @@ html, body {
     left: 50%;
     margin-top: -50px;
     margin-left: -50px;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 
 .listaNegocios{
@@ -191,12 +200,12 @@ html, body {
 	overflow-y: scroll; 
 }
 
-.listaNegocios .lista{
+ .lista{
 	padding: 0 10px 0;
 	width: 94%;
 }
 
-.listaNegocios .lista .item{
+ .lista .item{
 	background-color: rgba(255,255,255,0.8);
 		
 	 display: block;
@@ -208,13 +217,13 @@ html, body {
 	 margin: 5px 0;
 }
 
-.listaNegocios .lista .item .container{
+ .lista .item .container{
 	padding: 0 0.5em;
 	float: left;
 	width: 95%;
 }
 
-.listaNegocios .lista .item .container .datos{
+ .lista .item .container .datos{
 	float: left;
 	width: 60%;
 	height: 100%
@@ -222,7 +231,7 @@ html, body {
 }
 
 
-.listaNegocios .lista .item .container .datos p{
+ .lista .item .container .datos p{
 	margin-top: 0;
 	margin-bottom: 0.5em;
 	color: #A69E9E;
@@ -230,14 +239,14 @@ html, body {
 	
 }
 
-.listaNegocios .lista .item .container .img{
+ .lista .item .container .img{
 	float: left;
 	width: 40%;
 	height: 100%;
 	text-align: center;
 }
 
-.listaNegocios .lista .item .container .img img{
+ .lista .item .container .img img{
 	display: block;
     margin-left: auto;
     margin-right: auto;
@@ -246,7 +255,7 @@ html, body {
 	max-width: 60%;
 }
 
-.listaNegocios .lista .item .container .img a{
+ .lista .item .container .img a{
 	text-decoration: none;
 	padding: 3px;
 	color: white;
@@ -256,15 +265,95 @@ html, body {
 	margin-left: 2px;
 
 }
-.listaNegocios #ver{
+ #ver{
 	background: #D8D8D8;
 	border-radius: 40px;
 }
 
-.listaNegocios #rute{
+ #rute{
 	
 	background: #80A089;
 	border-radius: 40px;
 }
+/* registro negocios*/
+
+.content {
+	
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	left: 10%;
+	top: 12%;
+	background-color: rgba(244,244,244,0.8);
+	border-radius: 20px;
+	-webkit-box-shadow: 10px 5px 50px -2px rgba(0,0,0,0.61);
+	-moz-box-shadow: 10px 5px 50px -2px rgba(0,0,0,0.61);
+	box-shadow: 10px 5px 50px -2px rgba(0,0,0,0.61);
+}
+
+.tabNegocio, .tabNew{
+	font-size: 0.9em;
+	display: inline-block;
+	margin-right: 0.5em;
+}
+
+.tab_container {
+	width: 100%;
+	height: 100%;
+	
+	border-radius: 20px;
+}
+.tab_content {
+	width: 100%;
+	height: 100%;
+ 	font-size: 1.2em;
+ 	position: relative;
+}
+
+.tab_content .listaNegocio{
+	position: absolute;
+ 	left: 2em;
+ 	top: 2em;
+ 	width: 25%;
+ 	height: 90%;
+ 	background: white;
+ 	border-radius: 20px;
+ 	overflow-y: scroll;
+}
+
+.tab_content .datosNegocios{
+	position: absolute;
+ 	right: 2em;
+ 	top: 2em;
+ 	width: 65%;
+ 	height: 90%;
+ 	background: white;
+ 	border-radius: 20px;
+ 
+}
+
+.tab_content .formularioAltas{
+	position: absolute;
+ 	left: 2em;
+ 	top: 2em;
+ 	width: 40%;
+ 	height: 90%;
+ 	background: white;
+ 	border-radius: 20px;
+ 	overflow-y: scroll;
+}
+
+.tab_content #mapa{
+	position: absolute;
+ 	right: 2em;
+ 	top: 2em;
+ 	width: 50%;
+ 	height: 90%;
+ 	background: white;
+ 	border-radius: 20px;
+}
+
+
+
 
 
