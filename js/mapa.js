@@ -141,8 +141,8 @@ $(function(){
              datos.pais = findResult(resultados, "country");
              
              mapeoMarkers(datos);
-             
-            map.setZoom(15);
+
+            
             
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
@@ -164,6 +164,9 @@ $(function(){
         deleteAllMarkers();
        
           if (data.length != 0) {
+
+              map.setZoom(13);  
+            
             $(".listaNegocios").show();
             $(".listaNegocios .lista").empty();
             directionsDisplay.setMap(); //limpia ruta si existe
@@ -197,6 +200,8 @@ $(function(){
              $(".img #ver").click(function(){
 
               var index = parseInt($(this).attr('name'));
+              map.setCenter(markers[index].position);
+              map.setZoom(14);
               toggleBounce(markers[index],$(this));
 
               //#979797
@@ -283,7 +288,7 @@ $(function(){
           map.setCenter(results[0].geometry.location);
           $(".busqueda #search").val(results[0].formatted_address);
           
-          map.setZoom(15);
+          map.setZoom(13);
           $("#loading").hide();
         } else {
           alert('Geocode was not successful for the following reason: ' + status);

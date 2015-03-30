@@ -108,6 +108,34 @@
 						</ul>
         			</div>
         			<div class="datosNegocios">
+        				<div class="data">
+        					<form method = "POST" id="form_establecimiento">
+							
+								<input type ="text" name = "nombre"  placeholder = "Nombre del establecimiento" required="true"/>
+								
+								<input type="text" name = "direccion" placeholder = "Direccion establecimiento" required = "true"/>
+								
+								<input type ="text" name = "telefono" placeholder = "Número telefonico" />
+								<input type ="text" name = "celular" placeholder = "Número celular" />
+								
+								<select name="categoria" required="true" >
+										<option value="">Categoria</option>
+										<?php 
+											foreach ($arrayCategoria as $categoria) {
+												echo '<option value ="'.$categoria['id_Categorias'].'">'.$categoria['nombreCategoria'].'</option>' ;
+											}
+										 ?>
+								</select> <br><br>
+								<input type ="hidden" name = "lat" placeholder = "Latitud" required="true" />
+								<input type ="hidden" name = "lng" placeholder = "Longitud" required="true" />
+								
+								
+							</form>
+        				</div>
+        				<div class="mapa">
+        					<div id="loading" style="display:none;">	
+        				</div>
+        			</div>
         				
         			</div>
 			    </div>
@@ -134,8 +162,8 @@
 										}
 									 ?>
 							</select> <br><br>
-							<input type ="text" name = "lat" placeholder = "Latitud" required="true" />
-							<input type ="text" name = "lng" placeholder = "Longitud" required="true" />
+							<input type ="hidden" name = "lat" placeholder = "Latitud" required="true" />
+							<input type ="hidden" name = "lng" placeholder = "Longitud" required="true" />
 							<br><br>
 							<div id="ubicacion">
 								<label from = "ubication">Estoy en mi negocio</label>
@@ -148,7 +176,7 @@
 						<input type ="submit" id="registrar_negocio_btn" value = "Registrar"/><br><br>
 					</div>
         			<div id="mapa">
-        				<div id="loading" style="display:none;"></div>
+        				
         			</div>
 			    </div>
 

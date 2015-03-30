@@ -331,6 +331,22 @@ html, body {
  	border-radius: 20px;
  
 }
+	.tab_content .datosNegocios .data{
+		height: 50%;
+		margin: 1em auto;
+		width: 95%;
+		background-color: #EEE;	
+	}
+
+
+
+	.tab_content .datosNegocios .mapa{
+		height: 40%;
+		margin: 1em auto;
+		width: 95%;
+		background-color: #0FF;	
+	 
+	}
 
 .tab_content .formularioAltas{
 	position: absolute;
@@ -351,6 +367,30 @@ html, body {
  	height: 90%;
  	background: white;
  	border-radius: 20px;
+}
+
+#form_establecimiento{
+	width: auto;
+	height: auto;
+	padding: 1em;
+	vertical-align: center;
+}
+
+input[type="text"],  select {
+	font-family: 'Open Sans', sans-serif;
+	width:60%;
+	padding:0.7em 2em 0.7em 1.7em;
+	color:#1673AD;
+	font-size:15px;
+	outline: none;
+	background: none;
+	border:none;
+	font-weight:600;
+	}
+
+input[name="nombre"]{
+	
+	font-size: 20px;
 }
 
 

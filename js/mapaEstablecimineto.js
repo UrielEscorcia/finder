@@ -10,8 +10,9 @@ $(function(){
 
 
     $("#form_establecimiento input[name='ubication']").change(function(){
-      $("#mapa").append('<div id="loading" style="display:none;"></div>');
+      $("#mapa").append('<div id="loading"></div>');
       $("#loading").show();
+      
       geocoder = new google.maps.Geocoder();
       $("#form_establecimiento #ubicacion").css({'border-color':'','border-style':''});
       if ($(this).val() == "true") { //geolocalizacion negocio automatica
@@ -262,7 +263,7 @@ $(function(){
     getNegocios($(".tab_container").attr('name'));
 
     function getNegocios(id_user){
-      console.log("yay");
+      
       $.ajax({ 
           url: 'php/getNegociosbyUser.php',
           data: {datos:id_user}, 
@@ -285,8 +286,6 @@ $(function(){
               establecimientos.push(data[i]);
             }
           }
-
-          
           
         });
     }
