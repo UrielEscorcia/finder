@@ -11,11 +11,12 @@ mysql_set_charset("utf8",$dbConect);
 
 //si el formulario se envio
 if ($_POST) {
+
 	$nombre = $_POST['nombre'];
 	$direccion = $_POST['direccion'];
 	$telefono = $_POST['telefono'];
 	$celular = $_POST['celular'];
-	$id_negocio = $_SESSION['id'];
+	$id_negocio = $_POST['id'];
 	$latitud = $_POST['lat'];
 	$longitud = $_POST['lng'];
 	$categoria = $_POST['categoria'];
@@ -26,7 +27,18 @@ if ($_POST) {
 
 			
 	//registro de establecimiento
-	$query = "UPDATE establecimientos SET nombre='$nombre', direccion='$direccion', tel='$telefono', celular='$celular', lat='$latitud', lng='$longitud', categoria='$categoria', localidad='$ciudad', estado='$estado', pais='$pais' WHERE id_Establecimientos='$id_negocio' ";
+	$query = " UPDATE establecimientos 
+				SET nombre = '$nombre', 
+					direccion = '$direccion',
+					 tel = '$telefono',
+					  celular = '$celular', 
+					  lat = '$latitud',
+					  lng = '$longitud',
+					  categoria = '$categoria',
+					  localidad = '$ciudad',
+					   estado = '$estado',
+					   pais = '$pais'
+					    WHERE id_Establecimientos = '$id_negocio' ";
 
 	if (mysql_query($query,$dbConect)) {
 		echo json_encode(array("type"=>"succes", "text" => "Redireccionando."));	
