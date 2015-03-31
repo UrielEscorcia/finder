@@ -8,7 +8,8 @@ html, body {
 
 #bodyEstable {
 
-    background: url(../img/fondoMaps.jpg);
+    background: url(../img/fondoMaps.jpg) no-repeat;
+    background-size: cover;
     z-index: -1; /* Keep the background behind the content */
     /* don't forget to use the prefixes you need */
     
