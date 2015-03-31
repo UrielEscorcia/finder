@@ -19,9 +19,9 @@
 </head>
  
 <body>
-<div id="registro" class="login-form">
+<div id="registro" class="login-form nuevoSize">
 
-	<form method = "POST" id="form_registro">
+	<form method = "POST" id="form_registro" class="nuevoSizeForm">
 		<div id="error"></div>
 		<li>
 			<input type ="text" name = "nombre"  placeholder = "Escribe tu nombre" required="true"/>
@@ -39,14 +39,12 @@
 			<input type ="password" name = "re-password" placeholder = "Confirmar contraseña" required="true"/>
 		</li>
 		<li>	
-			<input type="date" name = "birthday" required="true"/>
-		</li>
-		<li>
 			<label for="tipo">Tipo Usuario:</label>
 			<select name="tipo" required="true">
 				<option value="usuario">Usuario</option>
 				<option value="dueño">Dueño Establecimeinto</option>
-			</select> <br><br>
+			</select> 
+			<input type="date" name = "birthday" required="true"/>
 		</li>
 		<li>
 			<label for="sex">Hombre</label>
@@ -55,7 +53,7 @@
 			<input type ="radio" name = "sex" value="mujer" />
 		</li>
 	</form>
-	<div class="p-container">
+	<div class="p-container newp-containerR">
 		
 		<input type ="submit" id="registrar_btn" value = "Registrar"/>
 		<div class="clear"> </div>

@@ -499,9 +499,6 @@ $(function(){
 
     if ($(".busqueda #search").val() != '') {
       
-      
-      
-      
       var address = $(".busqueda #search").val();
       geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
@@ -521,10 +518,13 @@ $(function(){
 
   });
 
+  $(".busqueda #search").keyup(function(event){
+    if(event.keyCode == 13){
+       $(".busqueda #buscarPlace").click();
+    }
+  });
+
   $(".busqueda #geolocalizar").click(function(){
-    
-    
-    
     
     if(navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {

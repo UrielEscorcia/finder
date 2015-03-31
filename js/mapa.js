@@ -300,6 +300,13 @@ $(function(){
 
   });
 
+  $(".busqueda #search").keyup(function(event){
+    if(event.keyCode == 13){
+       $(".busqueda #buscarPlace").click();
+    }
+  });
+
+
   $(".busqueda #geolocalizar").click(function(){
     deleteAllMarkers();
     directionsDisplay.setMap();//limpia ruta si existe
@@ -323,7 +330,7 @@ $(function(){
           // Browser doesn't support Geolocation
           handleNoGeolocation(false);
         }
-     });
+  });
 
   google.maps.event.addDomListener(window, 'load', initialize);
   

@@ -42,6 +42,12 @@ $(function(){
 		$("#error").hide('slow');
 	});
 
+	$("#form_login input[name='password']").keyup(function(event){
+	    if(event.keyCode == 13){
+	       $("#login_btn").click();
+	    }
+	  });
+
 	//formulario de registro usuarios
 
 	$("#registrar_btn").click(function(){
