@@ -178,8 +178,8 @@ $(function(){
     $(".various").fancybox({
     	openEffect	: 'fade',
 		closeEffect	: 'fade	',
-		maxWidth	: 800,
-		maxHeight	: 600,
+		maxWidth	: 600,
+		maxHeight	: 400,
 		fitToView	: false,
 		width		: '70%',
 		height		: '70%',
