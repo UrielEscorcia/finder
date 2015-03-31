@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 26-03-2015 a las 20:40:47
+-- Tiempo de generación: 31-03-2015 a las 01:16:35
 -- Versión del servidor: 5.5.38
 -- Versión de PHP: 5.6.2
 
@@ -53,18 +53,19 @@ CREATE TABLE `establecimientos` (
   `localidad` varchar(80) NOT NULL,
   `estado` varchar(80) NOT NULL,
   `pais` varchar(80) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `establecimientos`
 --
 
 INSERT INTO `establecimientos` (`id_Establecimientos`, `nombre`, `direccion`, `tel`, `celular`, `propietario`, `lat`, `lng`, `categoria`, `localidad`, `estado`, `pais`) VALUES
-(13, 'mi casa', '12 sur 11533-18', '2233445566', '', 1, '18.972341099999998', '-98.22507759999999', 3, 'Puebla', 'Puebla', 'México'),
 (18, 'aadsa', '3453', '', '', 1, '18.976774844560552', '-98.22010425498655', 2, 'Puebla', 'Puebla', 'México'),
 (19, 'casas', '344', '', '', 1, '18.977811081600436', '-98.2215924227234', 3, 'Puebla', 'Puebla', 'México'),
 (20, 'mi localito', 'aqui esta', '2233345563', '', 1, '18.981922055419556', '-98.22882531960448', 1, 'Puebla', 'Puebla', 'México'),
-(22, 'otro restaurant', 'qwertt', '', '', 1, '18.981062038754768', '-98.21897446344605', 1, 'Puebla', 'Puebla', 'México');
+(22, 'otro restaurant', 'qwertt', '', '', 1, '18.981062038754768', '-98.21897446344605', 1, 'Puebla', 'Puebla', 'México'),
+(23, 'Chigna', 'Centro Escolar', '7971098234', '', 1, '19.834648829802486', '-98.03598968200072', 3, 'Chignahuapan', 'Puebla', 'México'),
+(25, 'Cecyte Escuela', 'De Romero Vargas s/n', '9876543210', '7979710895', 1, '19.8485179059824', '-98.03286563488768', 3, 'Chignahuapan', 'Puebla', 'México');
 
 -- --------------------------------------------------------
 
@@ -125,7 +126,7 @@ MODIFY `id_Categorias` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT de la tabla `establecimientos`
 --
 ALTER TABLE `establecimientos`
-MODIFY `id_Establecimientos` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+MODIFY `id_Establecimientos` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
