@@ -13,7 +13,7 @@ mysql_set_charset("utf8",$dbConect);
 		
 		if (!empty($propietario)) {
 			$negocios = array();
-			$query = "SELECT * FROM establecimientos WHERE propietario='$propietario'";
+			$query = "SELECT * FROM establecimientos WHERE propietario='$propietario' ORDER BY id_Establecimientos DESC";
 			$result = mysql_query($query, $dbConect);
 			while ($row = mysql_fetch_assoc($result)) {
 				array_push($negocios, $row);

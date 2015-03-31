@@ -204,7 +204,7 @@ $(function(){
               map.setZoom(14);
               toggleBounce(markers[index],$(this));
 
-              //#979797
+              
 
               });
             $(".img #rute").click(function(){
@@ -325,6 +325,8 @@ $(function(){
         }
      });
 
-  initialize();
+  google.maps.event.addDomListener(window, 'load', initialize);
+  
 
 });
+

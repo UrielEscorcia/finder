@@ -109,14 +109,13 @@
         			</div>
         			<div class="datosNegocios">
         				<div class="data">
+        					<div id="error"></div>
         					<form method = "POST" id="form_establecimiento">
-							
-								<input type ="text" name = "nombre"  placeholder = "Nombre del establecimiento" required="true"/>
+								<div class="titulo">
+									<input type ="text" name = "nombre"  placeholder = "Nombre del establecimiento" required="true"/>
+								</div>
 								
-								<input type="text" name = "direccion" placeholder = "Direccion establecimiento" required = "true"/>
-								
-								<input type ="text" name = "telefono" placeholder = "Número telefonico" />
-								<input type ="text" name = "celular" placeholder = "Número celular" />
+								<input type="text" name = "direccion" placeholder = "Direccion establecimiento" required = "true"	/>
 								
 								<select name="categoria" required="true" >
 										<option value="">Categoria</option>
@@ -125,17 +124,22 @@
 												echo '<option value ="'.$categoria['id_Categorias'].'">'.$categoria['nombreCategoria'].'</option>' ;
 											}
 										 ?>
-								</select> <br><br>
+								</select> 
+								<input type ="text" name = "telefono" placeholder = "Número telefonico" />
+								<input type ="text" name = "celular" placeholder = "Número celular" />
 								<input type ="hidden" name = "lat" placeholder = "Latitud" required="true" />
 								<input type ="hidden" name = "lng" placeholder = "Longitud" required="true" />
+								<input type ="hidden" name = "id"  />
 								
 								
 							</form>
         				</div>
-        				<div class="mapa">
-        					<div id="loading" style="display:none;">	
+        				<div id="maps" class="mapa">
+        					
         				</div>
-        			</div>
+        				<div class="submitReg">
+							<input type ="submit" id="update_negocio_btn" value = "Actualizar"/>
+						</div>
         				
         			</div>
 			    </div>
@@ -161,19 +165,21 @@
 											echo '<option value ="'.$categoria['id_Categorias'].'">'.$categoria['nombreCategoria'].'</option>' ;
 										}
 									 ?>
-							</select> <br><br>
+							</select> 
 							<input type ="hidden" name = "lat" placeholder = "Latitud" required="true" />
 							<input type ="hidden" name = "lng" placeholder = "Longitud" required="true" />
-							<br><br>
+							
 							<div id="ubicacion">
-								<label from = "ubication">Estoy en mi negocio</label>
-								<input type ="radio" name = "ubication" value= "true" />
-								<label from = "ubication1">Elegir ubicacion manual</label>
-								<input type ="radio" name = "ubication" value="false" />
+								<label from = "ubication">Estoy en mi negocio <input type ="radio" name = "ubication" value= "true" /></label>
+								
+								<label from = "ubication1">Elegir ubicacion manual <input type ="radio" name = "ubication" value="false" /></label>
+								
 							</div>
 							
 						</form>
-						<input type ="submit" id="registrar_negocio_btn" value = "Registrar"/><br><br>
+						<div class="submitReg">
+							<input type ="submit" id="registrar_negocio_btn" value = "Registrar"/>
+						</div>
 					</div>
         			<div id="mapa">
         				
